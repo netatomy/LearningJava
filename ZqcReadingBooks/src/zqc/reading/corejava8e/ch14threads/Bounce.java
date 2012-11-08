@@ -3,11 +3,8 @@ package zqc.reading.corejava8e.ch14threads;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.EventQueue;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -90,20 +87,4 @@ class BounceFrame extends JFrame {
     public static final int DEFAULT_HEIGHT = 350;
     public static final int STEPS = 1000;
     public static final int DELAY = 3;
-}
-
-class BallComponent extends JPanel
-{
-    public void add(Ball b){
-        balls.add(b);
-}
-    public void paintComponent(Graphics g){
-        super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D)g;
-        for (Ball b : balls){
-            g2.fill(b.getShape());
-        }
-    }
-    
-    private ArrayList<Ball> balls = new ArrayList<>();
 }
