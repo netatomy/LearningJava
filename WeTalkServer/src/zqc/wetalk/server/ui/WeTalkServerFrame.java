@@ -41,8 +41,12 @@ public class WeTalkServerFrame extends JFrame {
 
         setTitle("WeTalk Server (DEMO)");
         setIconImage(Toolkit.getDefaultToolkit().getImage(ImageIconFileName));
-        setSize(new Dimension(600, 400));
+        setSize(new Dimension(600, 480));
+        setMinimumSize(new Dimension(480, 400));
+        //setMaximumSize(new Dimension(800, 600));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setResizable(false);
+        setLocationRelativeTo(null);
 
         initCompononents();
     }
@@ -79,7 +83,7 @@ public class WeTalkServerFrame extends JFrame {
         controlTabbedPane = new JTabbedPane();
         onlineUsersPanel = new JPanel(new BorderLayout());
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, controlTabbedPane, onlineUsersPanel);
-        splitPane.setResizeWeight(0.7);
+        splitPane.setResizeWeight(0.8);
         add(splitPane, BorderLayout.CENTER);
     }
 
@@ -148,7 +152,7 @@ public class WeTalkServerFrame extends JFrame {
         add(toolBar, BorderLayout.PAGE_START);
     }
 
-    public void exit() {
+    private void exit() {
 
         this.dispose();
         // JOptionPane.showMessageDialog(null, "ExitAction");

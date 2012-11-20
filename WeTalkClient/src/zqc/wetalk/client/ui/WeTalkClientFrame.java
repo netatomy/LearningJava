@@ -51,7 +51,7 @@ public class WeTalkClientFrame extends JFrame {
         JTextField messageTextField = new JTextField(35);
         messageTextField.setToolTipText("Type message here");
         sendPanel.add(messageTextField);
-        JButton sendButton = new JButton("Send");
+        JButton sendButton = new JButton("Send"); 
         sendButton.setToolTipText("Send message immeidately");
         sendPanel.add(sendButton);
         panel.add(sendPanel, BorderLayout.SOUTH);
@@ -80,6 +80,21 @@ public class WeTalkClientFrame extends JFrame {
         // File Menu
         JMenuItem logonMenuItem = createMenuItem("Logon...", KeyEvent.VK_L, "Logon WeTalk Server",
                         KeyStroke.getKeyStroke(KeyEvent.VK_L, KeyEvent.CTRL_MASK));
+        logonMenuItem.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            
+                switch (LogonDialog.showDialog(null)){
+                case OK:
+                    JOptionPane.showMessageDialog(null, "Authenticating...");
+                    break;
+                case CANCEL:
+                    dispose();
+                    break;
+                }
+            }
+        });
         fileMenu.add(logonMenuItem);
         JMenuItem logoutMenuItem = createMenuItem("Logout", KeyEvent.VK_O, "Logout WeTalk Server",
                         KeyStroke.getKeyStroke(KeyEvent.VK_O, KeyEvent.CTRL_MASK));
