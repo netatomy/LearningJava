@@ -33,8 +33,11 @@ public class SocketWrapper {
     }
     
     public void write(String message, String charset) throws UnsupportedEncodingException, IOException{
-        socket.getOutputStream().write(message.getBytes(charset));
-        socket.getOutputStream().flush();
+        byte[] data = message.getBytes(charset);
+        DataOutputStream out= new DataOutputStream(socket.getOutputStream());
+        out.writeInt(data.length);
+        out.write(data);
+        out.flush();
     }
     
     public void write(String message) throws UnsupportedEncodingException, IOException{
@@ -42,10 +45,12 @@ public class SocketWrapper {
     }
     
     public String read(String charset) throws IOException{
-        byte[] data = new byte[1024*1024];
+        DataInputStream in = new DataInputStream(socket.getInputStream());
+        int length = in.readInt();
+        byte[] data = new byte[length];
         int count = 0;
-        count = socket.getInputStream().read(data);
-        if (count < 1024*1024)
+        count = in.read(data);
+        if (count < length)
             data = Arrays.copyOf(data, count);
         return new String(data, Charset.forName(charset));
     }
