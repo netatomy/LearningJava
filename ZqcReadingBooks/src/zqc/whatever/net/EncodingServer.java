@@ -18,9 +18,9 @@ public class EncodingServer {
             SocketWrapper sw = new SocketWrapper(serverSocket.accept());
             try {
                 while (true) {
-                    String request = sw.read();
+                    String request = sw.read2();
                     System.out.println(request);
-                    sw.write(message);
+                    sw.write2(message);
                 }
             }
             catch (EOFException ex) {
