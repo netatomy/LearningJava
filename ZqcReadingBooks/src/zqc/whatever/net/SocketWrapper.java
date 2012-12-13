@@ -61,19 +61,11 @@ public class SocketWrapper {
     
     public String read2() throws IOException{
         DataInputStream in = new DataInputStream(socket.getInputStream());
-        int length = in.readInt();
-        byte[] data = new byte[length];
-        int count = 0;
-        count = in.read(data);
-//        if (count < data.length)
-//            data = Arrays.copyOf(data, count);
-        return new String(data);
+        return in.readUTF();
     }
     
     public void write2(String message) throws UnsupportedEncodingException, IOException{
         DataOutputStream out= new DataOutputStream(socket.getOutputStream());
-        out.writeInt(message.getBytes().length);
-        out.write(message.getBytes());
-        out.flush();
+        out.writeUTF(message);
     }
 }
