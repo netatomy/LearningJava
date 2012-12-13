@@ -13,11 +13,11 @@ public class EncodingClient {
     public static void main(String[] args) throws IOException, InterruptedException {
 
         SocketWrapper client = new SocketWrapper();
-        client.connect("localhost", 4444);
+        client.connect("192.168.56.101", 4444);
         
         for (int i = 1; i <= 5; i++){
-            client.write2("你好");
-            String response = client.read2();
+            client.write("你好");
+            String response = client.read();
             System.out.println(response);
             Thread.sleep(2000);
         }
