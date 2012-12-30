@@ -1,0 +1,10 @@
+----------------------------------------------------------------
+Fri Dec 07 11:40:55 CST 2012:
+ 正在使用类加载器 sun.misc.Launcher$AppClassLoader@1e3118a 引导数据库
+目录 E:\zqc\db\WeTalkDB  中的 Derby 版本 The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872) 实例 a816c00e-013b-7373-9ede-000000d23168
+
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_07-b11
+user.dir=E:\zqc\workspace\WeTalkServer
+derby.system.home=null
+数据库类装入器已启动 － derby.database.classpath=“”

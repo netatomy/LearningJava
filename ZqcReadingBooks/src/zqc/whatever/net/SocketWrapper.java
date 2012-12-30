@@ -27,24 +27,22 @@ public class SocketWrapper {
 
         socket.connect(new InetSocketAddress(hostName, port));
     }
-    
-    public void close() throws IOException{
+
+    public void close() throws IOException {
+
         socket.close();
     }
-    
-    public void write(String message, String charset) throws UnsupportedEncodingException, IOException{
-        byte[] data = message.getBytes(charset);
-        DataOutputStream out= new DataOutputStream(socket.getOutputStream());
+
+    public void writeBytes(byte[] data) throws IOException {
+
+        DataOutputStream out = new DataOutputStream(socket.getOutputStream());
         out.writeInt(data.length);
         out.write(data);
         out.flush();
     }
-    
-    public void write(String message) throws UnsupportedEncodingException, IOException{
-        write(message, "utf-8");
-    }
-    
-    public String read(String charset) throws IOException{
+
+    public byte[] readBytes() throws IOException {
+
         DataInputStream in = new DataInputStream(socket.getInputStream());
         int length = in.readInt();
         byte[] data = new byte[length];
@@ -52,20 +50,40 @@ public class SocketWrapper {
         count = in.read(data);
         if (count < length)
             data = Arrays.copyOf(data, count);
+        return data;
+    }
+
+    public void write(String message, String charset) throws UnsupportedEncodingException, IOException {
+
+        byte[] data = message.getBytes(charset);
+        writeBytes(data);
+    }
+
+    public void write(String message) throws UnsupportedEncodingException, IOException {
+
+        write(message, "utf-8");
+    }
+
+    public String read(String charset) throws IOException {
+
+        byte[] data = readBytes();
         return new String(data, Charset.forName(charset));
     }
-    
-    public String read() throws IOException{
+
+    public String read() throws IOException {
+
         return read("utf-8");
     }
-    
-    public String read2() throws IOException{
+
+    public String readUTF() throws IOException {
+
         DataInputStream in = new DataInputStream(socket.getInputStream());
         return in.readUTF();
     }
-    
-    public void write2(String message) throws UnsupportedEncodingException, IOException{
-        DataOutputStream out= new DataOutputStream(socket.getOutputStream());
+
+    public void writeUTF(String message) throws UnsupportedEncodingException, IOException {
+
+        DataOutputStream out = new DataOutputStream(socket.getOutputStream());
         out.writeUTF(message);
     }
 }

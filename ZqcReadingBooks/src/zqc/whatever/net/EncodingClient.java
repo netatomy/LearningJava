@@ -16,8 +16,8 @@ public class EncodingClient {
         client.connect("192.168.56.101", 4444);
         
         for (int i = 1; i <= 5; i++){
-            client.write2("你好");
-            String response = client.read2();
+            client.writeUTF("你好");
+            String response = client.readUTF();
             System.out.println(response);
             Thread.sleep(2000);
         }
